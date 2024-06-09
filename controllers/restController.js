@@ -1,5 +1,7 @@
+// controllers/restController.js
+
 import asyncHandler from "express-async-handler";
-import Restaurant from "../models/Restaurant.js";
+import Restaurant from "../models/resturant.js";
 
 // @desc    Create a new restaurant
 // @route   POST /api/restaurants
@@ -75,10 +77,9 @@ const updateRestaurant = asyncHandler(async (req, res) => {
 // @route   DELETE /api/restaurants/:id
 // @access  Private/Admin
 const deleteRestaurant = asyncHandler(async (req, res) => {
-  const restaurant = await Restaurant.findById(req.params.id);
+  const restaurant = await Restaurant.findByIdAndDelete(req.params.id);
 
   if (restaurant) {
-    await restaurant.remove();
     res.json({ message: "Restaurant removed" });
   } else {
     res.status(404);

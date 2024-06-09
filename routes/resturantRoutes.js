@@ -10,7 +10,7 @@ import {
   removeMenuItem,
 } from "../controllers/restController.js";
 import { protect } from "../middleware/authmiddleware.js";
-import { admin } from "../middlewares/adminMiddleware.js";
+import { admin } from "../middleware/adminMiddleware.js";
 
 router.route("/").post(protect, admin, createRestaurant).get(getRestaurants);
 
