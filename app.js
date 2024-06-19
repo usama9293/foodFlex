@@ -3,6 +3,8 @@ import dotenv from "dotenv";
 import connectDB from "./config/db.js";
 import userRoute from "./routes/userRoutes.js";
 import resturantRoutes from "./routes/resturantRoutes.js";
+import orderRoutes from "./routes/orderRoutes.js";
+import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
 
 dotenv.config();
 connectDB();
@@ -18,6 +20,10 @@ app.get("/", (req, res) => {
 // Routes
 app.use("/api/users", userRoute);
 app.use("/api/restaurants", resturantRoutes);
+app.use("/api/orders", orderRoutes);
+
+app.use(notFound);
+app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
 
